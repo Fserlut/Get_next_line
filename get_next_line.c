@@ -6,7 +6,7 @@
 /*   By: fserlut <fserlut@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 19:24:27 by fserlut           #+#    #+#             */
-/*   Updated: 2019/05/17 00:13:03 by fserlut          ###   ########.fr       */
+/*   Updated: 2019/06/04 22:07:54 by fserlut          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,79 +14,52 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-int					ft_strichr(const char *s, int c)
-{
-	int				i;
+//char				*strjoin() //funct help if BUFF_SIZE < \n
 
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			return (i);
-		i++;
-	}
-	if (s[i] == c)
-		return (i);
-	return (-1);
+char				*get_next_line_second_use(int i_start)
+{
+	return (NULL);	
 }
-
-char				*ft_strcut(char *str, int c)
+int					get_next_line(const int fd, char **line)
 {
-	int				i;
-	int				i_c;
-	char			*s_new;
+	char			*buff;
+	static	int		i_line_end; //index end line
+	static	int		i_next_line; //index next line start
+	static	int		c_use; //count open gnl
 
-	i = 0;
-	i_c = ft_strichr(str, c);
-	if (!(s_new = ft_strsub(str, i, i_c - i)))
-		return(NULL);
-	return (s_new);
-}
 
-int     			get_next_line(const int fd, char **line)
-{
-	char			buff[BUFF_SIZE + 1];
-	static	int		i_next;
-	static	int		i_start;
-	static	char	*p_next_line;
-	static	int		c_use;
-
+	buff = ft_strnew(BUFF_SIZE);
 	if (read(fd, buff, BUFF_SIZE) < 0)
-	{
-		printf("%s\n", "Read error");
 		return (-1);
-	}
 	else
 	{
 		if (c_use == 0)
 		{
-			i_next = ft_strichr(buff, '\n');
-			p_next_line = ft_strchr(buff, '\n') + 1;
+			i_line_end = ft_strchr_index(buff, '\n');
 			*line = ft_strcut(buff, '\n');
 			c_use++;
-			//printf("Next Line in get_next_line: %s\n", *p_next_line);
-			printf("Line in get_next_line: %s\n", *line);
+			return (1);
 		}
 		else
 		{
-			ft_memdel((void*)line);
-			*line = ft_strcut(p_next_line, '\n');
-			printf("Line in get_next_line: %s\n", *line);
-			p_next_line = ft_strchr(p_next_line, '\n') + 1;
+			i_next_line = i_line_end + 1;
+			//i_next = ;
+			//Need write to *line next line started with i_next
 		}
 	}
-	return (1);
+	return (0);
 }
 
-int					main()
+int					main(void)
 {
 	int				fd;
 	char			*line;
 
 	fd = open("test", O_RDWR);
 	get_next_line(fd, &line);
-	printf("%s\n", line); //Hello, World!1
-	get_next_line(fd, &line);
-	printf("%s\n", line); //Hello, World!2
+	ft_putstr(line); //1 line
+	ft_putstr("\n");
+	//get_next_line(fd, &line);
+	//printf("%s\n", line); //Hello, World!2
 	return (0);
 }
