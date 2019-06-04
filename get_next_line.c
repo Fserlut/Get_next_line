@@ -6,13 +6,11 @@
 /*   By: fserlut <fserlut@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 19:24:27 by fserlut           #+#    #+#             */
-/*   Updated: 2019/06/04 22:07:54 by fserlut          ###   ########.fr       */
+/*   Updated: 2019/06/04 23:03:17 by fserlut          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
 
 //char				*strjoin() //funct help if BUFF_SIZE < \n
 
@@ -47,19 +45,5 @@ int					get_next_line(const int fd, char **line)
 			//Need write to *line next line started with i_next
 		}
 	}
-	return (0);
-}
-
-int					main(void)
-{
-	int				fd;
-	char			*line;
-
-	fd = open("test", O_RDWR);
-	get_next_line(fd, &line);
-	ft_putstr(line); //1 line
-	ft_putstr("\n");
-	//get_next_line(fd, &line);
-	//printf("%s\n", line); //Hello, World!2
 	return (0);
 }
