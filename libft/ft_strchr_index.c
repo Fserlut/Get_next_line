@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strchr_index.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fserlut <fserlut@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/08 19:28:13 by fserlut           #+#    #+#             */
-/*   Updated: 2019/06/04 21:36:29 by fserlut          ###   ########.fr       */
+/*   Created: 2019/06/04 21:19:43 by fserlut           #+#    #+#             */
+/*   Updated: 2019/06/04 21:24:25 by fserlut          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE
-# define GET_NEXT_LINE
+#include "libft.h"
 
-# define BUFF_SIZE 32
-#include <sys/types.h>
-#include <sys/uio.h>
-#include <unistd.h>
-#include "libft/libft.h"
+int		ft_strchr_index(const char *s, int c)
+{
+	int i;
 
-int     get_next_line(const int fd, char **line);
-
-#endif
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (i);
+		i++;
+	}
+	if (s[i] == c)
+		return (i);
+	return (-1);
+}

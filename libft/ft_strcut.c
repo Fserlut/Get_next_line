@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strcut.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fserlut <fserlut@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/08 19:28:13 by fserlut           #+#    #+#             */
-/*   Updated: 2019/06/04 21:36:29 by fserlut          ###   ########.fr       */
+/*   Created: 2019/06/04 21:18:39 by fserlut           #+#    #+#             */
+/*   Updated: 2019/06/04 21:24:18 by fserlut          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE
-# define GET_NEXT_LINE
+#include "libft.h"
 
-# define BUFF_SIZE 32
-#include <sys/types.h>
-#include <sys/uio.h>
-#include <unistd.h>
-#include "libft/libft.h"
+char				*ft_strcut(char *str, int c)
+{
+	int				i;
+	int				i_c;
+	char			*s_new;
 
-int     get_next_line(const int fd, char **line);
-
-#endif
+	i = 0;
+	i_c = ft_strchr_index(str, c);
+	if (!(s_new = ft_strsub(str, i, i_c - i)))
+		return (NULL);
+	return (s_new);
+}
