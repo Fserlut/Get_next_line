@@ -6,7 +6,7 @@
 #    By: fserlut <fserlut@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 20:11:18 by fserlut           #+#    #+#              #
-#    Updated: 2019/06/04 18:11:00 by fserlut          ###   ########.fr        #
+#    Updated: 2019/06/05 20:39:10 by fserlut          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ HEAD_FOLDER = ./libft
 
 FLAGC = -Wall -Wextra -Werror
 
-all: create_lib
+all: create_lib get_next_line
 
 create_lib:
 	gcc -I $(HEAD_FOLDER) -c $(SRC) $(FLAGC)
@@ -36,11 +36,11 @@ create_lib:
 	/bin/rm -f *.c~
 
 get_next_line:
-	gcc $(NAME_FILE) $(NAME) -o get_next_line
+	gcc $(NAME_FILE) $(NAME) main.c -o get_next_line
 
 re_gnl:
 	/bin/rm -f get_next_line
-	gcc $(NAME_FILE) $(NAME) -o get_next_line
+	gcc $(NAME_FILE) $(NAME) main.c -o get_next_line
 	
 clean:
 	/bin/rm -f *.o

@@ -6,7 +6,7 @@
 /*   By: fserlut <fserlut@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 23:02:57 by fserlut           #+#    #+#             */
-/*   Updated: 2019/06/04 23:03:22 by fserlut          ###   ########.fr       */
+/*   Updated: 2019/06/05 12:28:41 by fserlut          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int					main(void)
 	char			*line;
 
 	fd = open("test", O_RDWR);
-	get_next_line(fd, &line);
+	ft_putnbr(get_next_line(fd, &line));
+	ft_putstr(" <- get_next_line out.\n");
 	ft_putstr(line); //1 line
 	ft_putstr("\n");
 	//get_next_line(fd, &line);
