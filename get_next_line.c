@@ -5,76 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fserlut <fserlut@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/08 19:24:27 by fserlut           #+#    #+#             */
-/*   Updated: 2019/06/05 23:16:31 by fserlut          ###   ########.fr       */
+/*   Created: 2019/06/19 11:49:13 by fserlut           #+#    #+#             */
+/*   Updated: 2019/06/22 10:36:35 by fserlut          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char				*ft_help(char *buff, int fd) //funct help if BUFF_SIZE < \n
+char			*get_next_line_cut()
 {
-	int				new_buff_size;
-	char			*new_buff;
-	int				i_line_end;
-
-	new_buff_size = BUFF_SIZE;
-	new_buff = ft_strnew(0);
-	ft_strcpy(new_buff, buff);
-	while (!(i_line_end = ft_strchr_index(new_buff, '\n') > 0))
-	{
-		new_buff_size++;
-		read(fd, buff, new_buff_size);
-		new_buff = ft_strjoin(new_buff, buff);
-		if ((i_line_end = ft_strchr_index(new_buff, '\n') > 0))
-			return (new_buff);
-	}
-	return (new_buff);
+    return (NULL);
 }
 
-char				*gnl(int i_start)
+int				get_next_line(const int fd, char **line)
 {
-	return (NULL);	
-}
-int					get_next_line(const int fd, char **line)
-{
-	char			*buff;
-	static	int		i_line_end;
-	static	int		i_next_line;
-	static	int		c_use; //count open gnl
+	static char	*fd_save[1000];
+	char		buff[BUFF_SIZE + 1];
+	char		*tmp;
+	int			read_b;
 
-	if (BUFF_SIZE <= 0)
-		return (0);
-	buff = ft_strnew(BUFF_SIZE);
-	if (read(fd, buff, BUFF_SIZE) < 0)
+	if (fd < 0 || line == NULL)
 		return (-1);
-	else
+	while ((read_b = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		if (c_use == 0)
-		{
-			i_line_end = ft_strchr_index(buff, '\n');
-			if ((i_line_end > 0)) // if BUFF_SIZE < '\n'
-			{
-				*line = ft_strcut(buff, '\n'); //cut string and adds '\0'
-				c_use++;
-				return (1);
-			}
-			else
-			{
-				*line = ft_help(buff, fd);
-				*line = ft_strcut(*line, '\n'); //cut string and adds '\0'
-				c_use++;
-				return (1);
-			}
-			
-		}
-		else
-		{
-			i_next_line = i_line_end + 1;
-			gnl(i_next_line);
-			//i_next = ;
-			//Need write to *line next line started with i_next
-		}
+		buff[read_b] = '\0';
+		if (fd_save[fd] == NULL)
+			fd_save[fd] = ft_strnew(1);
+		tmp = ft_strjoin(fd_save[fd], buff);
+		ft_strdel(&fd_save[fd]);
+		fd_save[fd] = ft_strdup(tmp);
+		if (ft_strchr(buff, '\n'))
+			break;
 	}
 	return (0);
 }

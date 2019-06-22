@@ -6,24 +6,21 @@
 /*   By: fserlut <fserlut@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 21:19:43 by fserlut           #+#    #+#             */
-/*   Updated: 2019/06/04 21:24:25 by fserlut          ###   ########.fr       */
+/*   Updated: 2019/06/09 21:27:23 by fserlut          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strchr_index(const char *s, int c)
+int		ft_strchr_index(int i_start, const char *s, int c)
 {
-	int i;
-
-	i = 0;
-	while (s[i])
+	while (s[i_start])
 	{
-		if (s[i] == c)
-			return (i);
-		i++;
+		if (s[i_start] == c)
+			return (i_start);
+		i_start++;
 	}
-	if (s[i] == c)
-		return (i);
+	if (s[i_start] == c)
+		return (i_start);
 	return (-1);
 }

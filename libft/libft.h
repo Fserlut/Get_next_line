@@ -6,7 +6,7 @@
 /*   By: fserlut <fserlut@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 23:09:51 by fserlut           #+#    #+#             */
-/*   Updated: 2019/06/04 21:20:44 by fserlut          ###   ########.fr       */
+/*   Updated: 2019/06/09 21:30:01 by fserlut          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ char	**ft_strsplit(char const *s, char c);
 char	*ft_strmap(char const *s, char (*f)(char));
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strcut(char *str, int c);
-int		ft_strchr_index(const char *s, int c);
+int		ft_strchr_index(int i_start, const char *s, int c);
 
 #endif
