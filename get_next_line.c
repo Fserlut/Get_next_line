@@ -12,10 +12,10 @@
 
 #include "get_next_line.h"
 
-int				ft_new_line(char **fd_save, char **line, int fd, int read_o)
+int		ft_new_line(char **fd_save, char **line, int fd)
 {
-	char		*tmp;
-	int			len;
+	char	*tmp;
+	int		len;
 
 	len = 0;
 	while (fd_save[fd][len] != '\n' && fd_save[fd][len] != '\0')
@@ -31,15 +31,13 @@ int				ft_new_line(char **fd_save, char **line, int fd, int read_o)
 	}
 	else if (fd_save[fd][len] == '\0')
 	{
-		if (read_o == BUFF_SIZE)
-			return (get_next_line(fd, line));
 		*line = ft_strdup(fd_save[fd]);
 		ft_strdel(&fd_save[fd]);
 	}
 	return (1);
 }
 
-int				get_next_line(const int fd, char **line)
+int		get_next_line(const int fd, char **line)
 {
 	static char	*fd_save[1000];
 	char		buff[BUFF_SIZE + 1];
@@ -55,7 +53,7 @@ int				get_next_line(const int fd, char **line)
 			fd_save[fd] = ft_strnew(1);
 		tmp = ft_strjoin(fd_save[fd], buff);
 		ft_strdel(&fd_save[fd]);
-		fd_save[fd] = ft_strdup(tmp);
+		fd_save[fd] = tmp;
 		if (ft_strchr(buff, '\n'))
 			break ;
 	}
@@ -63,5 +61,5 @@ int				get_next_line(const int fd, char **line)
 		return (-1);
 	else if (read_o == 0 && (fd_save[fd] == NULL || fd_save[fd][0] == '\0'))
 		return (0);
-	return (ft_new_line(fd_save, line, fd, read_o));
+	return (ft_new_line(fd_save, line, fd));
 }

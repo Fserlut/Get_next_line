@@ -14,24 +14,21 @@
 
 char		*ft_strdup(const char *s1)
 {
-	int			i;
-	char		*s;
+	char	*s2;
+	int		i;
 
 	i = 0;
-	while (s1[i])
+	while (s1[i] != '\0')
 		i++;
-	s = (char*)malloc(sizeof(char) * (i + 1));
-	if (s == NULL)
+	s2 = (char*)malloc(sizeof(*s2) * (i + 1));
+	if (s2 == NULL)
 		return (NULL);
-	else
+	i = 0;
+	while (s1[i])
 	{
-		i = 0;
-		while (s1[i])
-		{
-			s[i] = s1[i];
-			i++;
-		}
-		s[i] = '\0';
+		s2[i] = s1[i];
+		i++;
 	}
-	return (s);
+	s2[i] = '\0';
+	return (s2);
 }

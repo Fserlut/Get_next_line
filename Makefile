@@ -36,7 +36,7 @@ create_lib:
 	/bin/rm -f *.c~
 
 get_next_line:
-	gcc $(NAME_FILE) $(NAME) main.c -o get_next_line
+	gcc $(NAME_FILE) ./libft/$(NAME) main.c -o get_next_line
 
 re_gnl:
 	/bin/rm -f get_next_line
