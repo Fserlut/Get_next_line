@@ -39,7 +39,7 @@ int		ft_new_line(char **fd_save, char **line, int fd)
 
 int		get_next_line(const int fd, char **line)
 {
-	static char	*fd_save[1000];
+	static char	*fd_save[10240];
 	char		buff[BUFF_SIZE + 1];
 	char		*tmp;
 	int			read_o;

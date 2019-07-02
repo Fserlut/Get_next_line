@@ -14,22 +14,19 @@
 
 char		*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*r;
-	int		i;
-	int		j;
+	int		len;
+	char	*s_new;
 
-	i = 0;
-	j = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (0);
-	r = (char*)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (r == NULL)
-		return (NULL);
-	while (s1[j] != '\0')
-		r[i++] = s1[j++];
-	j = 0;
-	while (s2[j] != '\0')
-		r[i++] = s2[j++];
-	r[i] = '\0';
-	return (r);
+	if (s1 && s2)
+	{
+		len = ft_strlen(s1) + ft_strlen(s2);
+		s_new = ft_strnew(len);
+		if (!(s_new == NULL))
+		{
+			ft_strcpy(s_new, s1);
+			ft_strcat(s_new, s2);
+			return (s_new);
+		}
+	}
+	return (NULL);
 }

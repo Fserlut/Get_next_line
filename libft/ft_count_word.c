@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*   ft_count_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fserlut <fserlut@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/28 19:20:42 by fserlut           #+#    #+#             */
-/*   Updated: 2019/05/04 00:36:09 by fserlut          ###   ########.fr       */
+/*   Created: 2019/05/03 23:56:36 by fserlut           #+#    #+#             */
+/*   Updated: 2019/05/04 00:35:40 by fserlut          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			**ft_strsplit(char const *s, char c)
+int			ft_count_word(char *s, char l)
 {
-	char	**tab;
 	int		i;
-	size_t	lenstr;
+	int		c_word;
 
-	if (!s)
-		return (NULL);
-	while (*s == c)
-		++s;
-	if (!(tab = (char**)malloc(ft_count_word((char*)s, c) * sizeof(char*))))
-		return (NULL);
+	c_word = 0;
 	i = 0;
-	while (*s != '\0')
+	while (s[i])
 	{
-		lenstr = 0;
-		while (*s != c && *s != '\0' && ++s)
-			++lenstr;
-		if (!(tab[i] = ft_strnew(lenstr)))
-			return (NULL);
-		ft_strncpy(tab[i++], s - lenstr, lenstr);
-		while (*s == c)
-			++s;
+		if ((ft_isalpha(s[i])) && ((s[i - 1] == l) || (i == 0)))
+		{
+			c_word++;
+			i++;
+		}
+		else
+			i++;
 	}
-	tab[i] = 0;
-	return (tab);
+	return (c_word + 1);
 }
