@@ -6,7 +6,7 @@
 #    By: fserlut <fserlut@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 20:11:18 by fserlut           #+#    #+#              #
-#    Updated: 2019/06/05 20:39:10 by fserlut          ###   ########.fr        #
+#    Updated: 2019/07/03 18:07:52 by fserlut          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ get_next_line:
 
 re_gnl:
 	/bin/rm -f get_next_line
-	gcc $(NAME_FILE) $(NAME) main.c -o get_next_line
+	gcc $(NAME_FILE) ./libft/$(NAME) main.c -o get_next_line
 	
 clean:
 	/bin/rm -f *.o
